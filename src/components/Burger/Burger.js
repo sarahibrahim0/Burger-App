@@ -1,34 +1,39 @@
 import React from "react";
 import classes from "./Burger.module.css";
 import BurgerIngredients from "./Burger Ingrediants/BurgerIngredients";
-
+import WithRouter from "../../hoc/WithRouter/WithRouter";
 const Burger = (props) => {
-  let transformedIngredients = Object.keys(props.ingredients).map(
-    ingredient => {
-      return [...Array(props.ingredients[ingredient])].map((_,index)=>{
-       return  <BurgerIngredients key={ingredient + index} type={ingredient}></BurgerIngredients>
-      });
+  let newIng = props.ingredients
+  console.log(newIng)
+  // if(!props.ingredients){
+    let transformedIngredients = Object.keys(newIng || {}).map(
+      ingredient => {
+        return [...Array(props.ingredients[ingredient])].map((_,index)=>{
+         return  <BurgerIngredients key={ingredient + index} type={ingredient}></BurgerIngredients>
+        });
+      }
+    ).reduce((previousValue,currentValue)=>{
+      return previousValue.concat(currentValue)
+    },[]);
+
+    if(transformedIngredients.length === 0){
+
+      transformedIngredients= <p>Please Start Adding Ingredients</p>
+
     }
-  ).reduce((previousValue,currentValue)=>{
-    return previousValue.concat(currentValue)
-  },[]);
 
-  if(transformedIngredients.length === 0){
+    //turning the ingrediants object it receives from builder to an array of ingrediants
+    return (
+      <div className={classes.Burger}>
+        <BurgerIngredients type="bread-top"></BurgerIngredients>
 
-    transformedIngredients= <p>Please Start Adding Ingredients</p>
+        {transformedIngredients}
 
-  }
+        <BurgerIngredients type="bread-bottom"></BurgerIngredients>
+      </div>
+    );
+  // }
 
-  //turning the ingrediants object it receives from builder to an array of ingrediants
-  return (
-    <div className={classes.Burger}>
-      <BurgerIngredients type="bread-top"></BurgerIngredients>
-
-      {transformedIngredients}
-
-      <BurgerIngredients type="bread-bottom"></BurgerIngredients>
-    </div>
-  );
 };
 
-export default Burger;
+export default WithRouter(Burger);

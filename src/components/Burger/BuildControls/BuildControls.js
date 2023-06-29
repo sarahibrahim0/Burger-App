@@ -19,15 +19,17 @@ const BuildControls = (props)=>{
 
 {controls.map(control=>{
  return    <BuildControl
-  remove={()=> props.ingredientsRemoved(control.type)}
-  add={()=> props.ingredientsAdded(control.type)}
+  remove={()=> props.ingredientRemoved(control.type)}
+  add={()=> props.ingredientAdded(control.type)}
   key={control.label}
   label={control.label}
   disabled={props.disabled[control.type]}
   />
 })}
 
-<button onClick={props.purchaseHandler} disabled={!props.purchasable} className={classes.OrderButton}>Order Now</button>
+<button onClick={props.purchaseHandler} disabled={!props.purchasable} className={classes.OrderButton}>{props.isAuthenticated?'Order Now' : 'Sign Up To Order :)' }</button>
+
+
     </div>
     );
 }
