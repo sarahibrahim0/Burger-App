@@ -43,34 +43,6 @@ export class BurgerBuilder extends Component {
     return sum > 0;
   };
 
-  // addIngredientHandler = (type) => {
-  //   const oldCount = this.state.ingredients[type];
-  //   const updatedCounted = oldCount + 1;
-  //   const updatedIngredients = { ...this.state.ingredients };
-  //   updatedIngredients[type] = updatedCounted;
-  //   const priceAddition = INGREDIANT_PRICES[type];
-  //   const oldPrice = this.state.totalPrice;
-  //   const newPrice = oldPrice + priceAddition;
-  //   this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
-  //   this.updatePurchaseState(updatedIngredients);
-  // };
-
-  // removeIngredientHandler = (type) => {
-  //   const oldCount = this.state.ingredients[type];
-  //   if (oldCount !== 0) {
-  //     const updatedCounted = oldCount - 1;
-  //     const updatedIngredients = { ...this.state.ingredients };
-  //     updatedIngredients[type] = updatedCounted;
-  //     const priceAddition = INGREDIANT_PRICES[type];
-  //     const oldPrice = this.state.totalPrice;
-  //     const newPrice = oldPrice - priceAddition;
-  //     this.setState({ ingredients: updatedIngredients, totalPrice: newPrice });
-  //     this.updatePurchaseState(updatedIngredients);
-  //   } else {
-  //     return;
-  //   }
-  // };
-
   purchaseCancelHandler = () => {
     this.setState({ purchasing: false });
   };
@@ -95,7 +67,6 @@ export class BurgerBuilder extends Component {
   if ( this.props.ingredients ) {
    burger = (
         <ReactAux>
-          {/* {        console.log(this.state.ingredients) */}
           <Burger ingredients={this.props.ingredients} />
           <BuildControls
             purchaseHandler={this.purchaseHandler}

@@ -7,9 +7,6 @@ import * as actionTypes from '../../store/actions/order'
 
 class Checkout extends Component {
 
-// componentWillMount (){
-// this.props.purchaseHandled()
-// }
 
   CheckoutCancelledHandler = () => {
     this.props.navigate(-1);

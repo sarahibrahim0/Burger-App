@@ -50,7 +50,7 @@ const setIngredients = (state, action) => {
     },
     error: false,
     totalPrice: 4,
-    building: false
+    building: true
   };
   return updateObject(state, updatedProps);
 };
